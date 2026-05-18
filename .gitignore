@@ -1,0 +1,60 @@
+# Environment variables
+.env
+.env.*
+!.env.example
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.ipynb_checkpoints/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Virtual environments
+venv/
+.venv/
+env/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Raw and intermediate data
+data/raw/*
+!data/raw/.gitkeep
+
+data/interim/*
+!data/interim/.gitkeep
+
+data/database/*
+!data/database/.gitkeep
+
+# Processed data can become large; keep folder but ignore files by default
+data/processed/*
+!data/processed/.gitkeep
+
+# Models
+models/*
+!models/.gitkeep
+
+# Private notes
+_private/
+supplyguard-private-notes/
+PROJECT_LOG.md
+CHAT_HANDOFF.md
+TODO_PRIVATE.md
+QUESTIONS_PRIVATE.md
+
+# Credentials / secrets
+*.key
+*.pem
+credentials.json
+token.json
+
+# Large dashboard temp/cache files
+*.tmp
+*.bak
+
