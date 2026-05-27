@@ -1,8 +1,17 @@
 # SupplyGuard — Delivery Delay Risk Prediction for E-Commerce Operations
 
-End-to-end analytics and machine learning project that helps e-commerce operations teams identify high-risk orders, monitor delivery performance, and prioritize late-delivery prevention actions.
+SupplyGuard is an end-to-end analytics and machine learning project focused on late delivery risk in e-commerce operations.
 
-SupplyGuard simulates a real consulting-style data project for an e-commerce marketplace. The project combines data understanding, data cleaning, SQL modeling, exploratory analysis, feature engineering, machine learning, Tableau dashboards, and a Streamlit scoring app.
+The project uses the Olist Brazilian E-Commerce dataset to understand delivery performance, identify operational risk patterns, build a leakage-safe prediction model, and translate the results into business tools through Tableau and Streamlit.
+
+The goal is not only to train a model, but to build a realistic workflow around a business problem: helping an e-commerce operations team identify orders with higher late-delivery risk before the customer is affected.
+
+---
+
+## Live Project Links
+
+- [Tableau Dashboard](https://public.tableau.com/app/profile/johannes.vidal.blickle/viz/supplyguard_tableau_dashboard/Dashboard1-DeliveryOperationsOverview)
+- [Streamlit App](https://supplyguard-late-delivery-risk-prediction-app.streamlit.app/)
 
 ---
 
@@ -13,88 +22,85 @@ SupplyGuard simulates a real consulting-style data project for an e-commerce mar
 - [Project Objective](#project-objective)
 - [Dataset](#dataset)
 - [Target Definition](#target-definition)
-- [Project Architecture](#project-architecture)
-- [Workflow](#workflow)
+- [Project Workflow](#project-workflow)
+- [Repository Structure](#repository-structure)
 - [Key Insights](#key-insights)
 - [Machine Learning Results](#machine-learning-results)
-- [Risk Segmentation](#risk-segmentation)
-- [Tableau Dashboards](#tableau-dashboards)
+- [Tableau Dashboard](#tableau-dashboard)
 - [Streamlit App](#streamlit-app)
-- [Repository Structure](#repository-structure)
 - [How to Run Locally](#how-to-run-locally)
-- [Important Files](#important-files)
 - [Limitations](#limitations)
 - [Future Improvements](#future-improvements)
-- [Portfolio Positioning](#portfolio-positioning)
+- [Project Context](#project-context)
 - [Author](#author)
 
 ---
 
 ## Project Overview
 
-SupplyGuard is an end-to-end Data Analytics and Machine Learning project focused on late delivery risk in e-commerce operations.
+SupplyGuard simulates a consulting-style project for an e-commerce marketplace.
 
-The project uses the Olist Brazilian E-Commerce dataset to analyze delivery performance, identify operational risk patterns, build a leakage-safe prediction model, and translate the results into practical business tools.
+It combines:
 
-The final project includes:
+- data understanding;
+- data cleaning;
+- SQL and relational modeling;
+- exploratory data analysis;
+- feature engineering;
+- machine learning classification;
+- model interpretation;
+- Tableau dashboards;
+- Streamlit operational scoring.
 
-- Data understanding and quality assessment
-- Data cleaning and processed data creation
-- SQL and relational modeling
-- MySQL Workbench schema documentation
-- Business-focused delivery performance EDA
-- Leakage-safe feature engineering
-- Machine learning classification pipeline
-- Model interpretation and business impact analysis
-- Tableau Public dashboards
-- Streamlit operational scoring app
+The project follows a full workflow from raw relational data to business-facing outputs.
 
 ---
 
 ## Business Problem
 
-Late deliveries create operational pressure and damage customer satisfaction in e-commerce.
+Late deliveries create operational pressure and reduce customer satisfaction.
 
-Operations teams need to understand where delivery delays are more likely to happen and prioritize the orders that deserve closer monitoring before the customer is affected.
+For an e-commerce company, the problem is not only knowing that some orders arrived late. The more valuable question is:
 
-The core business question is:
+> Can we identify which orders are more likely to arrive late before the delivery happens?
 
-> How can an e-commerce company identify orders with higher late-delivery risk before delivery happens and use that information to improve operational decision-making?
+If operations teams can identify higher-risk orders earlier, they can prioritize monitoring, logistics follow-up, escalation, or proactive customer communication.
 
 ---
 
 ## Project Objective
 
-The objective of SupplyGuard is to build a practical decision-support workflow that helps an e-commerce company:
+The objective of SupplyGuard is to build a decision-support workflow that helps an e-commerce company:
 
-- Monitor historical delivery performance
-- Identify geographic, product, freight, and timing patterns behind late deliveries
-- Predict late-delivery risk using information available before the delivery outcome
-- Rank orders by risk
-- Flag high-risk orders for operational follow-up
-- Communicate insights through dashboards and an operational scoring app
+- monitor delivery performance;
+- understand where late deliveries are concentrated;
+- identify operational patterns behind delays;
+- predict late-delivery risk using pre-delivery information;
+- rank orders by risk;
+- flag high-risk orders for follow-up;
+- communicate results through dashboards and an app.
 
-The model is not positioned as a fully production-ready automated decision system. It is designed as a risk-prioritization layer.
+The model is not presented as a fully automated production system. It is used as a **risk-prioritization layer**.
 
 ---
 
 ## Dataset
 
-The project uses the Olist Brazilian E-Commerce Public Dataset, a relational e-commerce dataset containing marketplace order information.
+The project uses the **Olist Brazilian E-Commerce Public Dataset**.
 
-Main raw tables include:
+The dataset contains relational e-commerce data, including:
 
-- Orders
-- Customers
-- Sellers
-- Products
-- Order items
-- Payments
-- Reviews
-- Geolocation
-- Product category translations
+- orders;
+- customers;
+- sellers;
+- products;
+- order items;
+- payments;
+- reviews;
+- geolocation;
+- product category translations.
 
-The dataset is relational, so a major part of the project involved validating safe joins and avoiding row multiplication across orders, items, payments, reviews, and geolocation.
+Because the data is relational, a significant part of the project focuses on validating table relationships and avoiding row multiplication when joining orders with items, payments, reviews, or geolocation.
 
 ---
 
@@ -118,11 +124,11 @@ Pandas implementation:
 order_delivered_customer_date.dt.normalize() > order_estimated_delivery_date.dt.normalize()
 ```
 
-Orders delivered on the estimated delivery date are not considered late, regardless of timestamp.
+Orders delivered on the estimated delivery date are **not** considered late, even if the timestamp is later than midnight.
 
-This date-only definition was adopted because `order_estimated_delivery_date` represents a promised delivery date, not an exact timestamp deadline.
+This definition was chosen because `order_estimated_delivery_date` represents a promised delivery date, not an exact timestamp deadline.
 
-Official target results:
+Official target distribution:
 
 | Metric | Value |
 |---|---:|
@@ -133,64 +139,13 @@ Official target results:
 
 ---
 
-## Project Architecture
-
-SupplyGuard is structured as a complete analytics-to-action workflow:
-
-```text
-Raw Olist CSV files
-        │
-        ▼
-01 Data Understanding
-        │
-        ▼
-02 Data Cleaning
-        │
-        ▼
-03 SQL & Relational Modeling
-        │
-        ▼
-04 Delivery Performance EDA
-        │
-        ▼
-05 Feature Engineering
-        │
-        ▼
-06 Machine Learning Modeling
-        │
-        ▼
-07 Business Impact & Model Interpretation
-        │
-        ├── Tableau Dashboards
-        │
-        └── Streamlit Scoring App
-```
-
-The project separates responsibilities clearly:
-
-- SQL / relational layer: validates structure and safe joins
-- EDA: explains historical delivery performance
-- ML: predicts and ranks late-delivery risk
-- Tableau: monitors business performance and model behavior at aggregate level
-- Streamlit: scores individual or batch orders for operational action
-
----
-
-## Workflow
+## Project Workflow
 
 ### 01 — Data Understanding
 
 The first notebook establishes the raw data baseline.
 
-It covers:
-
-- Raw CSV validation
-- Table shapes and column inventory
-- Data types and missing values
-- Duplicate checks
-- Preliminary primary and foreign key checks
-- Relational structure overview
-- Initial leakage considerations
+It validates the raw CSV files, reviews table shapes, columns, data types, missing values, duplicate rows, preliminary keys, table relationships, and initial leakage risks.
 
 No cleaning, target creation, feature engineering, or modeling is performed in this stage.
 
@@ -198,45 +153,39 @@ No cleaning, target creation, feature engineering, or modeling is performed in t
 
 ### 02 — Data Cleaning
 
-The second notebook creates clean and consistent processed tables.
+The second notebook creates clean processed versions of the raw Olist tables.
 
-Main decisions:
+Main work completed:
 
-- Conservative cleaning strategy
-- Date and timestamp conversion
-- Exact duplicate removal from geolocation
-- Product category translation enrichment
-- Aggregated geolocation table by zip code prefix
-- Missing values preserved where analytically meaningful
-- Post-delivery fields kept for target creation and diagnostic analysis, but documented as leakage-sensitive
-
-Important output:
-
-```text
-data/processed/
-```
+- converted date and timestamp columns;
+- removed exact duplicate geolocation rows;
+- created an aggregated geolocation table by zip code prefix;
+- enriched product categories with English translations;
+- handled text fields conservatively;
+- documented missing values without aggressive imputation;
+- kept post-delivery fields for target creation and diagnostic analysis, while marking them as leakage-sensitive.
 
 ---
 
 ### 03 — SQL & Relational Modeling
 
-The third notebook builds the relational foundation of the project.
+The third notebook builds the relational and SQL layer.
 
-Main goals:
+Main work completed:
 
-- Validate primary and compound keys
-- Validate relationships between cleaned tables
-- Quantify row multiplication risks
-- Define safe join strategy
-- Create reusable order-level aggregate tables
-- Build SQL scripts and MySQL layer
-- Document the relational schema with an EER diagram
+- validated primary and compound keys;
+- checked relationships between cleaned tables;
+- quantified row multiplication risks;
+- defined safe join rules;
+- created order-level aggregate tables;
+- built SQL scripts for MySQL;
+- created a MySQL Workbench EER schema diagram.
 
 Safe join strategy:
 
-- Use `orders` as base for order-level analysis
-- Aggregate order items, payments, and reviews before joining to orders
-- Use aggregated geolocation by zip prefix for geographic joins
+- use `orders` as the base table for order-level analysis;
+- aggregate order items, payments, and reviews before joining to orders;
+- use the aggregated zip-prefix geolocation table for geographic joins.
 
 ---
 
@@ -244,20 +193,18 @@ Safe join strategy:
 
 This notebook analyzes historical delivery performance from a business perspective.
 
-Main questions:
+It focuses on:
 
-- What is the overall late delivery rate?
-- How severe are late deliveries?
-- Which geographies have higher risk?
-- How do seller-customer routes affect late delivery?
-- How do freight, product category, order value, and timing relate to delay risk?
-- How do late deliveries affect customer review scores?
-
-Important result:
-
-```text
-Official late delivery rate: 6.77%
-```
+- overall late delivery rate;
+- delay severity;
+- customer and seller geography;
+- same-state vs cross-state deliveries;
+- customer-seller route patterns;
+- freight and order value;
+- product categories;
+- payment profile;
+- review score impact;
+- monthly and peak-period risk.
 
 ---
 
@@ -267,21 +214,13 @@ This notebook creates the official modeling dataset.
 
 Main principles:
 
-- One row per delivered order
-- Official date-only target
-- Features available at or shortly after payment approval
-- No post-delivery leakage variables
-- No encoding, scaling, imputation, or modeling yet
+- one row per delivered order;
+- official date-only target;
+- features available at or shortly after payment approval;
+- no post-delivery leakage variables;
+- no encoding, scaling, imputation, or model training.
 
-Output:
-
-```text
-data/processed/modeling_dataset.csv
-data/processed/feature_dictionary.csv
-data/processed/feature_engineering_summary.csv
-```
-
-The final modeling dataset contains:
+Final modeling dataset:
 
 | Metric | Value |
 |---|---:|
@@ -295,25 +234,25 @@ The final modeling dataset contains:
 
 ### 06 — Machine Learning Modeling
 
-This notebook builds the leakage-safe machine learning workflow.
+This notebook builds the leakage-safe modeling workflow.
 
-The modeling process uses:
+The workflow uses:
 
-- Train / validation / test split
-- Sklearn pipelines
-- ColumnTransformer preprocessing
-- Train-only fitting of imputers, scalers, and encoders
-- Consistent model comparison
-- Validation-based threshold selection
-- Untouched test set final evaluation
+- train / validation / test split;
+- sklearn pipelines;
+- ColumnTransformer preprocessing;
+- train-only fitting of imputers, scalers, and encoders;
+- consistent model comparison;
+- validation-based threshold selection;
+- final evaluation on an untouched test set.
 
 Compared models:
 
-- DummyClassifier baseline
-- Logistic Regression
-- Decision Tree
-- Random Forest
-- Extra Trees
+- DummyClassifier baseline;
+- Logistic Regression;
+- Decision Tree;
+- Random Forest;
+- Extra Trees.
 
 Final selected model:
 
@@ -321,7 +260,7 @@ Final selected model:
 Random Forest classifier
 ```
 
-Selected threshold:
+Final selected threshold:
 
 ```text
 0.16
@@ -331,286 +270,20 @@ Selected threshold:
 
 ### 07 — Business Impact & Model Interpretation
 
-This notebook translates the final model into business value.
+This notebook translates the model into business terms.
 
-It does not retrain models or change the threshold.
+It does not retrain the model or change the threshold.
 
 It focuses on:
 
-- Risk bands
-- Lift vs baseline
-- Top-risk order concentration
-- Feature importance by business area
-- Prediction outcome interpretation
-- Operational recommendations
-- Dashboard and Streamlit implications
-- Limitations and future improvements
-
----
-
-## Key Insights
-
-### Delivery Performance
-
-Late delivery is a focused but meaningful operational issue:
-
-```text
-6.77% of delivered orders arrived after the estimated delivery date.
-```
-
-Late deliveries are also a severity problem:
-
-- Median late delay: 7 days
-- P95 late delay: 31 days
-
----
-
-### Geography and Route Risk
-
-Geography is one of the strongest operational signals.
-
-Cross-state orders are riskier than same-state orders:
-
-| Route type | Late delivery rate |
-|---|---:|
-| Same-state | 4.52% |
-| Cross-state | 8.04% |
-
-The `SP → RJ` route is especially relevant:
-
-| Metric | Value |
-|---|---:|
-| Orders | 8,131 |
-| Late orders | 1,152 |
-| Late delivery rate | 14.17% |
-
----
-
-### Customer Experience Impact
-
-Late delivery strongly affects customer review scores:
-
-| Delivery status | Average review score |
-|---|---:|
-| On-time | 4.29 |
-| Late | 2.27 |
-
-Review data is used only as post-delivery diagnostic information, not as a predictive model feature.
-
----
-
-### Peak Months
-
-Delivery risk varies significantly over time.
-
-Peak months showed much higher late delivery rates:
-
-| Period | Late delivery rate |
-|---|---:|
-| Other months | 4.46% |
-| Peak months | 15.15% |
-
----
-
-## Machine Learning Results
-
-The final model is interpreted as a risk-prioritization tool, not as a complete detector of all late deliveries.
-
-Final model:
-
-```text
-Random Forest classifier
-```
-
-Final threshold:
-
-```text
-0.16
-```
-
-Final test performance:
-
-| Metric | Value |
-|---|---:|
-| Accuracy | 89.91% |
-| Precision | 29.14% |
-| Recall | 34.20% |
-| F1-score | 31.47% |
-| ROC-AUC | 76.20% |
-| PR-AUC | 23.84% |
-
-Confusion matrix:
-
-| Actual / Predicted | Predicted On Time | Predicted Late |
-|---|---:|---:|
-| Actual On Time | 16,900 | 1,087 |
-| Actual Late | 860 | 447 |
-
-Business interpretation:
-
-- Baseline late delivery rate: 6.77%
-- Flagged orders late delivery rate: 29.14%
-- Lift vs baseline: 4.3x
-- Flagged order share: 7.95%
-
-This means the model identifies a smaller group of orders with a much higher concentration of late deliveries than the overall dataset.
-
----
-
-## Risk Segmentation
-
-Risk bands were created to translate model scores into operational categories.
-
-| Risk band | Late rate |
-|---|---:|
-| Low Risk | 3.44% |
-| Medium Risk | 10.06% |
-| High Risk | 23.57% |
-| Very High Risk | 40.00% |
-
-Top-risk concentration:
-
-| Segment | Late rate | Late deliveries captured |
-|---|---:|---:|
-| Top 5% highest-risk orders | 32.99% | 24.33% |
-| Top 10% highest-risk orders | 25.92% | 38.26% |
-| Top 20% highest-risk orders | 18.61% | 54.93% |
-
-This supports the use of the model as an operational prioritization layer.
-
----
-
-## Tableau Dashboards
-
-The Tableau dashboard phase was completed directly in Tableau Public.
-
-Tableau is used as the monitoring and reporting layer of the project.
-
-The workbook contains two dashboards:
-
-### 1. Delivery Operations Overview
-
-Purpose:
-
-> Monitor historical delivery performance and identify operational late-delivery patterns.
-
-Main sections:
-
-- Delivered orders
-- Late delivery rate
-- Late orders
-- Median late delay
-- Monthly late delivery trend
-- Route type late rate
-- Top customer states by late orders
-- Top customer states by late delivery rate
-- Top seller-customer routes
-- Review score by delivery status
-- Brazil late delivery rate map
-
-Main message:
-
-> Late delivery is not random. It varies over time, is higher for cross-state deliveries, concentrates in specific states and routes, and is strongly associated with lower review scores.
-
-### 2. Predictive Risk Monitoring
-
-Purpose:
-
-> Show how the machine learning model supports operations by prioritizing orders with higher-than-average late delivery risk.
-
-Main sections:
-
-- Baseline late rate
-- Flagged late rate
-- Lift vs baseline
-- Flagged order share
-- Late rate by risk band
-- Orders by risk band
-- Top-risk concentration
-- Feature area importance
-- Prediction outcome matrix
-
-Main message:
-
-> The model does not capture every late delivery, but it identifies groups of orders with substantially higher risk than the baseline.
-
-Tableau Public link:
-
-```text
-TABLEAU_PUBLIC_LINK_HERE
-```
-
-Dashboard screenshots:
-
-```text
-reports/figures/tableau_dashboard_1_delivery_operations.png
-reports/figures/tableau_dashboard_2_predictive_risk_monitoring.png
-```
-
----
-
-## Streamlit App
-
-The Streamlit app is the operational scoring and action layer of the project.
-
-It does not duplicate Tableau.
-
-### Tableau vs Streamlit
-
-| Tool | Role | Business use |
-|---|---|---|
-| Tableau | Monitoring and reporting layer | Track delivery performance and model risk at aggregate level |
-| Streamlit | Operational scoring layer | Score individual or batch orders and recommend action |
-
-### Streamlit Features
-
-The app includes four sections:
-
-1. Home / Overview
-   - Explains SupplyGuard
-   - Shows model context
-   - Explains risk bands and business use
-
-2. Single Order Scoring
-   - Manual order input form
-   - Predicts late-delivery probability
-   - Assigns risk band
-   - Flags orders above threshold
-   - Returns recommended operational action
-
-3. Batch Scoring
-   - Upload CSV file
-   - Validate required columns
-   - Score all orders
-   - Assign risk band
-   - Flag high-risk orders
-   - Download scored CSV
-
-4. Model Information / Limitations
-   - Explains model design
-   - Explains leakage-safe workflow
-   - Lists limitations and intended use
-
-### Risk Band Logic
-
-| Risk band | Score range | Recommended action |
-|---|---:|---|
-| Low Risk | `< 0.08` | Standard handling |
-| Medium Risk | `0.08 – 0.16` | Monitor normally |
-| High Risk | `0.16 – 0.25` | Prioritize logistics follow-up |
-| Very High Risk | `>= 0.25` | Escalate and consider proactive customer communication |
-
-Flagging rule:
-
-```python
-flagged_order = predicted_late_probability >= 0.16
-```
-
-Streamlit app link:
-
-```text
-STREAMLIT_APP_LINK_HERE
-```
+- risk bands;
+- lift vs baseline;
+- top-risk order concentration;
+- feature importance by business area;
+- prediction outcome interpretation;
+- operational recommendations;
+- dashboard and Streamlit implications;
+- limitations and future improvements.
 
 ---
 
@@ -680,12 +353,262 @@ supplyguard-delivery-risk/
 
 ---
 
+## Key Insights
+
+### Late delivery is focused but meaningful
+
+Late deliveries represent a minority of delivered orders, but they are operationally important:
+
+```text
+Late delivery rate: 6.77%
+```
+
+Late delays are also severe when they happen:
+
+- median late delay: 7 days;
+- P95 late delay: 31 days.
+
+---
+
+### Geography matters
+
+Cross-state deliveries are riskier than same-state deliveries:
+
+| Route type | Late delivery rate |
+|---|---:|
+| Same-state | 4.52% |
+| Cross-state | 8.04% |
+
+The route `SP → RJ` is especially important:
+
+| Metric | Value |
+|---|---:|
+| Orders | 8,131 |
+| Late orders | 1,152 |
+| Late delivery rate | 14.17% |
+
+---
+
+### Late deliveries damage customer experience
+
+Late delivery is strongly associated with lower review scores:
+
+| Delivery status | Average review score |
+|---|---:|
+| On-time | 4.29 |
+| Late | 2.27 |
+
+Review data is used only as post-delivery diagnostic context. It is not used as a predictive model feature.
+
+---
+
+### Peak periods are operationally risky
+
+Delivery risk varies significantly by month.
+
+| Period | Late delivery rate |
+|---|---:|
+| Other months | 4.46% |
+| Peak months | 15.15% |
+
+---
+
+## Machine Learning Results
+
+The final model should be interpreted as a risk-prioritization tool, not as a complete detector of all late deliveries.
+
+Final model:
+
+```text
+Random Forest classifier
+```
+
+Final threshold:
+
+```text
+0.16
+```
+
+Final test performance:
+
+| Metric | Value |
+|---|---:|
+| Accuracy | 89.91% |
+| Precision | 29.14% |
+| Recall | 34.20% |
+| F1-score | 31.47% |
+| ROC-AUC | 76.20% |
+| PR-AUC | 23.84% |
+
+Confusion matrix:
+
+| Actual / Predicted | Predicted On Time | Predicted Late |
+|---|---:|---:|
+| Actual On Time | 16,900 | 1,087 |
+| Actual Late | 860 | 447 |
+
+Business interpretation:
+
+| Metric | Value |
+|---|---:|
+| Baseline late delivery rate | 6.77% |
+| Flagged orders late delivery rate | 29.14% |
+| Lift vs baseline | 4.3x |
+| Flagged order share | 7.95% |
+
+The model does not capture every late delivery. Its value is that the flagged group has a much higher late-delivery rate than the dataset baseline.
+
+---
+
+## Risk Segmentation
+
+Risk bands were created to translate model scores into operational categories.
+
+| Risk band | Late rate |
+|---|---:|
+| Low Risk | 3.44% |
+| Medium Risk | 10.06% |
+| High Risk | 23.57% |
+| Very High Risk | 40.00% |
+
+Top-risk concentration:
+
+| Segment | Late rate | Late deliveries captured |
+|---|---:|---:|
+| Top 5% highest-risk orders | 32.99% | 24.33% |
+| Top 10% highest-risk orders | 25.92% | 38.26% |
+| Top 20% highest-risk orders | 18.61% | 54.93% |
+
+This is the main practical value of the model: it helps operations focus attention on a smaller group of orders that contains a disproportionate share of actual late deliveries.
+
+---
+
+## Tableau Dashboard
+
+The Tableau dashboard was built as the monitoring and reporting layer of the project.
+
+It contains two dashboards:
+
+### 1. Delivery Operations Overview
+
+Purpose:
+
+> Monitor historical delivery performance and identify operational late-delivery patterns.
+
+Main sections:
+
+- delivered orders;
+- late delivery rate;
+- late orders;
+- median late delay;
+- monthly late delivery trend;
+- route type late rate;
+- top customer states by late orders;
+- top customer states by late delivery rate;
+- top seller-customer routes;
+- review score by delivery status;
+- Brazil late delivery rate map.
+
+Main message:
+
+> Late delivery is not random. It varies over time, is higher for cross-state deliveries, concentrates in specific states and routes, and is strongly associated with lower review scores.
+
+### 2. Predictive Risk Monitoring
+
+Purpose:
+
+> Show how the machine learning model supports operations by prioritizing orders with higher-than-average late delivery risk.
+
+Main sections:
+
+- baseline late rate;
+- flagged late rate;
+- lift vs baseline;
+- flagged order share;
+- late rate by risk band;
+- orders by risk band;
+- top-risk concentration;
+- feature area importance;
+- prediction outcome matrix.
+
+Main message:
+
+> The model does not capture every late delivery, but it identifies groups of orders with substantially higher risk than the baseline.
+
+[View the SupplyGuard Tableau Dashboard](https://public.tableau.com/app/profile/johannes.vidal.blickle/viz/supplyguard_tableau_dashboard/Dashboard1-DeliveryOperationsOverview)
+
+Dashboard screenshots:
+
+```text
+reports/figures/tableau_dashboard_1_delivery_operations.png
+reports/figures/tableau_dashboard_2_predictive_risk_monitoring.png
+```
+
+---
+
+## Streamlit App
+
+The Streamlit app is the operational scoring and action layer of the project.
+
+It does not duplicate Tableau.
+
+| Tool | Role | Business use |
+|---|---|---|
+| Tableau | Monitoring and reporting layer | Track delivery performance and model risk at aggregate level |
+| Streamlit | Operational scoring layer | Score individual or batch orders and recommend action |
+
+The app includes four sections:
+
+1. **Home / Overview**
+   - explains SupplyGuard;
+   - shows model context;
+   - explains risk bands and business use.
+
+2. **Single Order Scoring**
+   - manual order input form;
+   - predicts late-delivery probability;
+   - assigns risk band;
+   - flags orders above threshold;
+   - returns recommended operational action.
+
+3. **Batch Scoring**
+   - upload CSV file;
+   - validate required columns;
+   - score all orders;
+   - assign risk band;
+   - flag high-risk orders;
+   - download scored CSV.
+
+4. **Model Information / Limitations**
+   - explains model design;
+   - explains leakage-safe workflow;
+   - lists limitations and intended use.
+
+Risk band logic:
+
+| Risk band | Score range | Recommended action |
+|---|---:|---|
+| Low Risk | `< 0.08` | Standard handling |
+| Medium Risk | `0.08 – 0.16` | Monitor normally |
+| High Risk | `0.16 – 0.25` | Prioritize logistics follow-up |
+| Very High Risk | `>= 0.25` | Escalate and consider proactive customer communication |
+
+Flagging rule:
+
+```python
+flagged_order = predicted_late_probability >= 0.16
+```
+
+[Open the SupplyGuard Streamlit App](https://supplyguard-late-delivery-risk-prediction-app.streamlit.app/)
+
+---
+
 ## How to Run Locally
 
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/supplyguard-delivery-risk.git
+git clone <repository-url>
 cd supplyguard-delivery-risk
 ```
 
@@ -704,13 +627,13 @@ conda activate supplyguard
 pip install -r requirements.txt
 ```
 
-### 4. Run Streamlit app
+### 4. Run the Streamlit app
 
 ```bash
 streamlit run streamlit_app/app.py
 ```
 
-The app expects the following files to exist:
+The app expects these files to exist:
 
 ```text
 outputs/best_model_compressed.pkl
@@ -725,7 +648,7 @@ streamlit_app/assets/SupplyGuard_Logo_Cropped.png
 
 ## Important Files
 
-### Core notebooks
+Core notebooks:
 
 ```text
 notebooks/01_data_understanding.ipynb
@@ -737,84 +660,84 @@ notebooks/06_modeling.ipynb
 notebooks/07_business_impact_and_model_interpretation.ipynb
 ```
 
-### SQL layer
+SQL layer:
 
 ```text
 sql/
 scripts/load_processed_to_mysql.py
 ```
 
-### Streamlit app
+Streamlit app:
 
 ```text
 streamlit_app/app.py
 .streamlit/config.toml
 ```
 
-### Model artifact
+Model artifact:
 
 ```text
 outputs/best_model_compressed.pkl
 ```
 
-The original uncompressed model artifact was not included because it was too large for normal GitHub usage.
+The original uncompressed model artifact is not included because it is too large for normal GitHub usage.
 
 ---
 
 ## Limitations
 
-This project is intentionally leakage-safe, which makes the prediction task harder but more realistic.
+This project was designed to be realistic, so the model only uses information that would be available before the delivery outcome is known. That makes the prediction task harder, but also more honest.
 
-Main limitations:
+The main limitation is that the dataset does not include several operational variables that would likely be very important in a real e-commerce environment, such as:
 
-- No carrier or logistics provider data
-- No warehouse capacity data
-- No inventory availability data
-- No weather, strike, or holiday disruption data
-- No real-time tracking events
-- No production monitoring infrastructure
-- The model was trained on historical Olist data and should not be treated as production-ready
-- Model probabilities should be interpreted as risk scores for prioritization, not guaranteed delivery outcomes
+- carrier or logistics provider;
+- warehouse capacity;
+- inventory availability;
+- real-time tracking events;
+- route disruptions;
+- weather conditions;
+- holidays, strikes or regional incidents;
+- seller handling performance over time.
 
-The model is useful for identifying higher-risk groups of orders, but it does not capture every late delivery.
+Because of this, the model should not be interpreted as a complete late-delivery detection system. Its value is in ranking orders by risk and helping operations teams focus on a smaller group of orders with a much higher late-delivery rate than the overall baseline.
+
+The model is useful for prioritization, but it is not production-ready.
 
 ---
 
 ## Future Improvements
 
-Potential next steps:
+If this project were continued in a real business context, the next improvements would be:
 
-- Add carrier and logistics event data
-- Add weather and holiday features
-- Use chronological validation as a robustness check
-- Create train-safe historical seller/category/state risk features
-- Calibrate predicted probabilities
-- Use cost-based threshold optimization
-- Deploy Streamlit app online
-- Add model monitoring over time
-- Extend Tableau dashboard with refreshed data simulation
-- Build an operational workflow around high-risk order escalation
+- add carrier and logistics event data;
+- include weather, holidays and regional disruption data;
+- test chronological validation to better simulate future prediction;
+- create train-safe historical features, such as seller or route delay history;
+- calibrate predicted probabilities;
+- define cost-based thresholds depending on operational capacity;
+- monitor model performance over time;
+- connect the Streamlit app to a live order database;
+- automate daily batch scoring for new orders.
+
+These additions would make the model more operationally useful and closer to a real deployment scenario.
 
 ---
 
-## Portfolio Positioning
+## Project Context
 
-SupplyGuard demonstrates:
+This project was developed as my final portfolio project during the Ironhack Data Analytics bootcamp.
 
-- End-to-end project structure
-- Relational data understanding
-- Data cleaning and processed data creation
-- SQL and MySQL Workbench workflow
-- Business-focused EDA
-- Leakage-safe target definition
-- Feature engineering
-- Machine learning pipelines
-- Model interpretation
-- Dashboarding in Tableau
-- Streamlit app development
-- Business storytelling and decision support
+The goal was not only to train a machine learning model, but to build a complete analytical workflow around a realistic business problem. For that reason, the project includes data cleaning, relational modeling, SQL, EDA, machine learning, Tableau dashboards and a Streamlit app.
 
-The project is designed to show both Data Analytics and Data Science skills in a realistic business context.
+The main focus was to show how data analysis and machine learning can support operational decision-making in an e-commerce environment.
+
+In practical terms:
+
+- Tableau works as the monitoring and reporting layer.
+- Streamlit works as the operational scoring layer.
+- The machine learning model works as a risk-prioritization tool.
+
+This separation was intentional. The dashboard explains what is happening at business level, while the app helps score individual or batch orders for action.
 
 ---
 
@@ -822,4 +745,8 @@ The project is designed to show both Data Analytics and Data Science skills in a
 
 Johannes Vidal
 
-Data Analyst / Data Science portfolio project.
+Data Analytics / Data Science portfolio project  
+Ironhack Data Analytics Bootcamp
+
+[Tableau Dashboard](https://public.tableau.com/app/profile/johannes.vidal.blickle/viz/supplyguard_tableau_dashboard/Dashboard1-DeliveryOperationsOverview)  
+[Streamlit App](https://supplyguard-late-delivery-risk-prediction-app.streamlit.app/)
