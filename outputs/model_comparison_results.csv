@@ -1,0 +1,8 @@
+model,accuracy,precision,recall,f1_score,roc_auc,pr_auc,threshold,predicted_late_orders,actual_late_orders
+Dummy Classifier,0.9323,0.0,0.0,0.0,0.5,0.0677,,,
+Logistic Regression,0.695,0.1416,0.6917,0.235,0.7628,0.2231,,,
+Decision Tree,0.8812,0.1735,0.2005,0.186,0.5655,0.0889,,,
+Random Forest,0.9328,0.8571,0.0092,0.0182,0.7563,0.2535,,,
+Extra Trees,0.9326,0.5385,0.0321,0.0606,0.7479,0.2214,,,
+Random Forest Tuned,0.7938,0.1775,0.5624,0.2698,0.7652,0.2384,,,
+Random Forest,0.8991,0.2914,0.342,0.3147,0.762,0.2384,0.16,1534.0,1307.0

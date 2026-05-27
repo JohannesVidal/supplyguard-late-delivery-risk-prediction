@@ -58,3 +58,24 @@ token.json
 *.tmp
 *.bak
 
+
+# Streamlit deployment allowlist
+!data/processed/modeling_dataset.csv
+!data/processed/feature_dictionary.csv
+!outputs/best_model_compressed.pkl
+!outputs/test_predictions_with_risk_segments.csv
+!streamlit_app/assets/SupplyGuard_Logo.png
+!streamlit_app/assets/SupplyGuard_Logo_Cropped.png
+!.streamlit/
+!.streamlit/config.toml
+!.env.example
+
+# Keep deployment folders visible for selected files
+!data/
+!data/processed/
+!outputs/
+!streamlit_app/
+!streamlit_app/assets/
+
+# Do not track oversized uncompressed model artifact
+outputs/best_model.pkl

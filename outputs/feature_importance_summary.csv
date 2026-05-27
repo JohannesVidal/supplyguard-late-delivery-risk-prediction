@@ -1,0 +1,33 @@
+original_feature,importance,importance_pct,feature_area
+purchase_month,0.10039076362420521,10.04,Purchase timing
+purchase_hour,0.06483984502251865,6.48,Purchase timing
+dominant_product_category,0.06305943732660008,6.31,Product profile
+estimated_delivery_days,0.05381455843521486,5.38,Delivery promise
+customer_seller_state_pair,0.051363584030547395,5.14,Geography & logistics
+customer_seller_distance_km,0.04805004505650288,4.81,Geography & logistics
+customer_state,0.044203036972702114,4.42,Geography & logistics
+approval_delay_hours,0.04347668954971419,4.35,Delivery promise
+purchase_day_of_week,0.03900166585908514,3.9,Purchase timing
+total_freight_value,0.03823195744595082,3.82,Freight & economics
+freight_ratio,0.0363843864639605,3.64,Freight & economics
+total_product_volume_cm3,0.03537913928294938,3.54,Product profile
+max_product_volume_cm3,0.03518659928373985,3.52,Product profile
+total_order_item_value,0.035056928052436785,3.51,Freight & economics
+total_payment_value,0.03476573267085834,3.48,Payment profile
+avg_payment_value,0.034692310828949066,3.47,Payment profile
+avg_item_price,0.03320633331868285,3.32,Freight & economics
+max_product_weight_g,0.033202810767539684,3.32,Product profile
+total_product_weight_g,0.03315304630014084,3.32,Product profile
+max_item_price,0.033147049252604976,3.31,Freight & economics
+total_item_price,0.03260092398542985,3.26,Freight & economics
+main_seller_state,0.019096914531046328,1.91,Geography & logistics
+max_payment_installments,0.018589592065886812,1.86,Payment profile
+main_payment_type,0.013695588456390696,1.37,Payment profile
+same_state_order,0.006826704091817952,0.68,Geography & logistics
+is_weekend_purchase,0.0061939660967278275,0.62,Purchase timing
+order_item_count,0.004293423298480949,0.43,Order structure
+payment_count,0.0019659445332137508,0.2,Payment profile
+product_count,0.0017611538902551538,0.18,Order structure
+product_category_count,0.0015790096028915825,0.16,Product profile
+payment_method_count,0.0014401908610756958,0.14,Payment profile
+seller_count,0.0013506690418798042,0.14,Order structure

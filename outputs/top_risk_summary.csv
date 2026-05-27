@@ -1,0 +1,4 @@
+segment,orders,late_orders,order_share_pct,late_rate_pct,late_capture_pct,lift_vs_baseline
+Top 5% highest-risk orders,964,318,5.0,32.99,24.33,4.87
+Top 10% highest-risk orders,1929,500,10.0,25.92,38.26,3.83
+Top 20% highest-risk orders,3858,718,20.0,18.61,54.93,2.75

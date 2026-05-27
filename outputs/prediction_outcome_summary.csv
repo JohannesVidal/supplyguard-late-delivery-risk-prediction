@@ -1,0 +1,5 @@
+prediction_outcome,orders,avg_risk_score,order_share_pct
+True Negative,16900,0.05,87.59
+False Positive,1087,0.23,5.63
+False Negative,860,0.076,4.46
+True Positive,447,0.265,2.32

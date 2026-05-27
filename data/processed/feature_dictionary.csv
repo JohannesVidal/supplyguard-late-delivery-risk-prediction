@@ -1,0 +1,36 @@
+column,role,description
+order_id,identifier,"Unique order identifier kept for traceability, not used as a predictive feature."
+is_late,target,"Official date-only late delivery target. 1 if delivered date is after estimated delivery date, else 0."
+purchase_month,feature,Month of order purchase.
+purchase_day_of_week,feature,"Day of week of order purchase, where Monday is 0 and Sunday is 6."
+purchase_hour,feature,Hour of day when the order was purchased.
+is_weekend_purchase,feature,Flag indicating whether the order was purchased on Saturday or Sunday.
+estimated_delivery_days,feature,Calendar days between purchase date and estimated delivery date.
+approval_delay_hours,feature,Hours between purchase timestamp and payment approval timestamp.
+customer_state,feature,Customer state.
+main_seller_state,feature,"Main seller state for the order, selected by item count and item value."
+same_state_order,feature,Flag indicating whether customer and main seller are in the same state.
+cross_state_order,feature,Flag indicating whether customer and main seller are in different states.
+customer_seller_state_pair,feature,Combined customer-main seller state pair.
+customer_seller_distance_km,feature,Approximate distance in kilometers between customer and main seller zip prefix coordinates.
+order_item_count,feature,Number of items in the order.
+product_count,feature,Number of unique products in the order.
+seller_count,feature,Number of unique sellers in the order.
+total_item_price,feature,Total item price before freight.
+total_freight_value,feature,Total freight value for the order.
+avg_item_price,feature,Average item price in the order.
+max_item_price,feature,Maximum item price in the order.
+total_order_item_value,feature,Total order item value including item price and freight.
+freight_ratio,feature,Freight value divided by total order item value.
+product_category_count,feature,Number of unique product categories in the order.
+dominant_product_category,feature,Dominant product category selected by category item count and category item value.
+total_product_weight_g,feature,Total product weight in grams across order items.
+max_product_weight_g,feature,Maximum product weight in grams among order items.
+total_product_volume_cm3,feature,Total product volume in cubic centimeters across order items.
+max_product_volume_cm3,feature,Maximum product volume in cubic centimeters among order items.
+payment_count,feature,Number of payment records associated with the order.
+payment_method_count,feature,Number of distinct payment methods used in the order.
+total_payment_value,feature,Total payment value associated with the order.
+avg_payment_value,feature,Average payment value across payment records.
+max_payment_installments,feature,Maximum number of payment installments used in the order.
+main_payment_type,feature,Main payment type for the order.

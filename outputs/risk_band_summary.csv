@@ -1,0 +1,5 @@
+risk_band,orders,late_orders,late_rate,avg_risk_score,order_share_pct,late_rate_pct,lift_vs_baseline,late_capture_pct
+Low Risk,13992,481,0.034376786735277304,0.036,72.52,3.44,0.51,36.8
+Medium Risk,3768,379,0.10058386411889597,0.108,19.53,10.06,1.48,29.0
+High Risk,1014,239,0.2357001972386588,0.193,5.26,23.57,3.48,18.29
+Very High Risk,520,208,0.4,0.333,2.7,40.0,5.9,15.91
